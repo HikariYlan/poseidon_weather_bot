@@ -1,4 +1,4 @@
-import { REST, Routes, SlashCommandBuilder } from "discord.js";
+import {REST, Routes, SlashCommandBuilder} from "discord.js";
 import "dotenv/config";
 
 const commands = [
@@ -10,17 +10,21 @@ const commands = [
                 .setDescription("The name of the city")
                 .setRequired(true)
         )
+        .toJSON(),
+    new SlashCommandBuilder()
+        .setName("ping")
+        .setDescription("Checking if the bot is online")
         .toJSON()
 ];
 
-const rest = new REST({ version: "10" }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({version: "10"}).setToken(process.env.DISCORD_TOKEN);
 
 (async () => {
     try {
         console.log("Deploying...");
         await rest.put(
             Routes.applicationCommands(process.env.CLIENT_ID),
-            { body: commands }
+            {body: commands}
         );
         console.log("Commands deployed!");
     } catch (error) {
