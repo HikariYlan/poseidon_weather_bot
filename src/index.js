@@ -1,6 +1,7 @@
 import { Client, GatewayIntentBits } from "discord.js";
-import {weather} from "./commands/weather.js";
 import "dotenv/config";
+import {weather} from "./commands/weather.js";
+import {ping} from "./commands/ping.js";
 
 const client = new Client({
     intents: [
@@ -21,6 +22,11 @@ client.on("interactionCreate", async (interaction) => {
         const city = interaction.options.getString("city");
 
         await weather(interaction, city);
+    }
+
+    if (interaction.commandName === "ping") {
+
+        await ping(interaction);
     }
 });
 
