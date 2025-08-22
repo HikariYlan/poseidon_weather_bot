@@ -1,5 +1,5 @@
 import { Client, GatewayIntentBits } from "discord.js";
-import axios from "axios";
+import {weather} from "./commands/weather.js";
 import "dotenv/config";
 
 const client = new Client({
@@ -18,33 +18,10 @@ client.on("interactionCreate", async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
     if (interaction.commandName === "weather") {
-        const ville = interaction.options.getString("city");
+        const city = interaction.options.getString("city");
 
-        try {
-            const url = `http://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=${process.env.WEATHER_API}&lang=fr&units=metric`;
-            const res = await axios.get(url);
-            const data = res.data;
-
-            const temp = data.main.temp;
-            const desc = data.weather[0].description;
-            const emoji = getEmoji(data.weather[0].main);
-
-            await interaction.reply(`${emoji} **${ville}** : ${temp}°C, ${desc}`);
-        } catch (err) {
-            await interaction.reply("⚠️ City not found or API error.");
-        }
+        await weather(interaction, city);
     }
 });
-
-function getEmoji(condition) {
-    switch (condition) {
-        case "Clear": return "☀️";
-        case "Clouds": return "☁️";
-        case "Rain": return "🌧️";
-        case "Snow": return "❄️";
-        case "Thunderstorm": return "⛈️";
-        default: return "🌍";
-    }
-}
 
 client.login(process.env.DISCORD_TOKEN);
