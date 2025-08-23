@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export async function ping(interaction)
 {
     try {
