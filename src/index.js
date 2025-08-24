@@ -18,6 +18,14 @@ client.once("ready", () => {
 client.on("interactionCreate", async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
+    /*
+    Template to add a command:
+         if (interaction.commandName === "name_of_the_command") {
+
+            await name_of_the_function(interaction);
+        }
+     */
+
     if (interaction.commandName === "weather") {
         const city = interaction.options.getString("city");
 
