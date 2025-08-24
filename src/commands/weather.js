@@ -27,7 +27,7 @@ function getEmoji(condition) {
 
 export async function weather(interaction, city) {
     try {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_API}&lang=fr&units=metric`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_API}&lang=en&units=metric`;
         const res = await axios.get(url);
         const data = res.data;
 
