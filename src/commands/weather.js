@@ -17,7 +17,7 @@ export async function weather(interaction, city) {
         const res = await axios.get(url);
         const data = res.data;
 
-        const temp = data.main.temp;
+        const temp = Math.round(data.main.temp);
         const desc = data.weather[0].description;
         const emoji = getEmoji(data.weather[0].main);
 
