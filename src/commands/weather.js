@@ -1,5 +1,4 @@
 import axios from "axios";
-import {time} from "discord.js";
 
 function getEmoji(condition) {
     let hour = new Date().getHours()
@@ -36,8 +35,14 @@ export async function weather(interaction, city) {
         const desc = data.weather[0].description;
         const emoji = getEmoji(data.weather[0].main);
 
-        await interaction.reply(`${emoji} **${city}** : ${temp}°C, ${desc}`);
+        await interaction.reply({
+            content: `${emoji} **${city}** : ${temp}°C, ${desc}`,
+            flags: 64
+        });
     } catch (err) {
-        await interaction.reply("⚠️ City not found or API error.");
+        await interaction.reply({
+            content: "⚠️ City not found or API error.",
+            flags: 64
+        });
     }
 }
