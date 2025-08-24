@@ -44,5 +44,6 @@ export async function weather(interaction, city) {
             content: "⚠️ City not found or API error.",
             flags: 64
         });
+        console.log(err);
     }
 }
