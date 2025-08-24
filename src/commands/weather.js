@@ -1,13 +1,28 @@
 import axios from "axios";
+import {time} from "discord.js";
 
 function getEmoji(condition) {
-    switch (condition) {
-        case "Clear": return "☀️";
-        case "Clouds": return "☁️";
-        case "Rain": return "🌧️";
-        case "Snow": return "❄️";
-        case "Thunderstorm": return "⛈️";
-        default: return "🌍";
+    let hour = new Date().getHours()
+    if (hour === (6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14 || 15 || 16 || 17))
+    {
+        switch (condition) {
+            case "Clear": return "☀️";
+            case "Clouds": return "☁️";
+            case "Rain": return "🌧️";
+            case "Snow": return "❄️";
+            case "Thunderstorm": return "⛈️";
+            default: return "🌍";
+        }
+    }
+    else {
+        switch (condition) {
+            case "Clear": return "🌕";
+            case "Clouds": return "☁️";
+            case "Rain": return "🌧️";
+            case "Snow": return "❄️";
+            case "Thunderstorm": return "⛈️";
+            default: return "🌍";
+        }
     }
 }
 
